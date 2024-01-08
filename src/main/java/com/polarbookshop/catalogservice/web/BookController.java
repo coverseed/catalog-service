@@ -22,7 +22,7 @@ public class BookController {
     }
 
     @GetMapping("{isbn}")
-    public Book getByIsbn(@PathVariable String isbn) {
+    public Book getByIsbn(@PathVariable("isbn") String isbn) {
         return bookService.viewBookDetails(isbn);
     }
 
@@ -34,12 +34,12 @@ public class BookController {
 
     @DeleteMapping("{isbn}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable String isbn) {
+    public void delete(@PathVariable("isbn") String isbn) {
         bookService.removeBookFromCatalog(isbn);
     }
 
     @PutMapping("{isbn}")
-    public Book put(@PathVariable String isbn, @Valid @RequestBody Book book) {
+    public Book put(@PathVariable("isbn") String isbn, @Valid @RequestBody Book book) {
         return bookService.editBookDetails(isbn, book);
     }
 
